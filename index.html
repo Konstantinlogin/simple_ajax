@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <form id="form" action="" method="post">
+            <div>
+                Textarea 1: <textarea name="Textarea_1"></textarea>
+            </div>
+            <div>
+                Textarea 2:  <textarea name="Textarea_2"></textarea>
+            </div>
+            <div>
+                Textarea 3:  <textarea name="Textarea_3"></textarea>
+            </div>
+            <div>
+                Textarea 4:  <textarea name="Textarea_4"></textarea>
+            </div>
+            <div>
+                Textarea 5:  <textarea name="Textarea_5"></textarea>
+            </div>
+            <input id="save" type="button" name="submit" value="save">
+        </form>
+        <div id="result"></div>
+        
+        <script>
+            $(document).ready(function(){
+                $("#save").on('click', function(){
+                    $.ajax({
+                            url: 'send.php',
+                            type : "POST",
+                            dataType : 'json',
+                            data : $("#form").serialize(),
+                            success : function(result) {
+                                console.log(result);
+                                $("#result").text("send");
+                        },
+                        error: function() {
+                            console.error("that's error somewhere..");
+                        }
+                    })
+                });
+            });
+        </script>
+    </body>
+</html>
